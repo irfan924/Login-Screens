@@ -13,7 +13,7 @@ import LottieView from 'lottie-react-native';
 
 // Import Navigation for Navgite Current Screen To Other Once
 
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation,StackActions } from '@react-navigation/native'
 
 // Import firebase Authenication for Signing In App
 
@@ -38,7 +38,7 @@ const Home = (props) => {
                 style={styles.btn}
                 onPress={async () => {
                     await auth().signOut();
-                    navigation.navigate('WelcomeScreen')
+                    navigation.dispatch(StackActions.popToTop())
                 }}
             >
                 <Text style={styles.btnText}>

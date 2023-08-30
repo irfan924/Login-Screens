@@ -11,7 +11,7 @@ import LottieView from 'lottie-react-native';
 
 // Import Navigation for Navgite Current Screen To Other Once
 
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation,StackActions } from '@react-navigation/native'
 
 // Import firebase Authenication for Signing In App
 
@@ -29,7 +29,9 @@ const SplashScreen = () => {
     useEffect(() => {
         setTimeout(() => {
             auth().onAuthStateChanged(user => {
-                navigation.navigate(user !== null ? 'Home' : 'getStarted')
+                const roteScreen = user !== null ? 'Home' : 'getStarted';
+                
+                navigation.dispatch(StackActions.replace(roteScreen));
             })
         }, 3000)
     }, []);

@@ -10,6 +10,8 @@ import {
     View
 } from 'react-native'
 
+import {useNavigation, StackActions} from '@react-navigation/native'
+
 // Vector Icons Import
 import Icon from 'react-native-vector-icons/Ionicons'
 
@@ -23,9 +25,12 @@ const width = Dimensions.get('screen').width;
 
 const Signin = (props) => {
 
+    const navigation = useNavigation();
+
     // for Handling Signing In with the help of Auth
     const handleSignin = async () => {
         const response = await auth().signInWithEmailAndPassword(email, pass);
+        navigation.dispatch(StackActions.replace('Home'))       
     }
     // Use States for Getting Data from TextInputs
     const [email, setEmail] = useState('');
@@ -92,7 +97,9 @@ const Signin = (props) => {
             <View style={styles.bottomView}>
 
                 {/* SignUp Button */}
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={()=> navigation.navigate('Signup')}
+                >
                     <Text style={styles.signupBtn}>Sign Up</Text>
                 </TouchableOpacity>
 
